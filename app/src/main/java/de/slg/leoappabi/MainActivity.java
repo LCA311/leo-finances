@@ -12,12 +12,15 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -44,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView hours;
     private TextView days;
 
+    private boolean fullscreen;
+
     @Override
     protected void onCreate(Bundle b) {
         super.onCreate(b);
@@ -62,6 +67,22 @@ public class MainActivity extends AppCompatActivity {
         AnimationDrawable drawable = (AnimationDrawable) ContextCompat.getDrawable(this, R.drawable.background_drawable);
         parent.setBackground(drawable);
 
+        findViewById(R.id.info).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new InformationDialog(MainActivity.this)
+                        .setText(getString(R.string.info_text)).show();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initCurrentTimerPosition();
+        initTimer();
+        initFullscreen();
     }
 
     private String getMinuteHourString(long l) {
@@ -78,16 +99,11 @@ public class MainActivity extends AppCompatActivity {
         return "" + l;
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initCurrentTimerPosition();
-        initTimer();
-        initFullscreen();
-    }
-
     private void initFullscreen() {
-        View decorView = getWindow().getDecorView();
+
+        fullscreen = true;
+
+        final View decorView = getWindow().getDecorView();
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             decorView.setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -96,6 +112,13 @@ public class MainActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+            decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+                @Override
+                public void onSystemUiVisibilityChange(int visibility) {
+                    hideSystemBars(decorView);
+                }
+            });
         }
     }
 
@@ -110,9 +133,9 @@ public class MainActivity extends AppCompatActivity {
 
             long goal = date.getTime();
             goal = (goal - time) / 1000 / 60;
-            timer[0] = goal % 60;
+            timer[0] = goal % 60+1;
             goal /= 60;
-            timer[1] = goal % 24;
+            timer[1] = goal % 24+1;
             goal /= 24;
             timer[2] = goal;
         } catch (ParseException e) {
@@ -124,11 +147,6 @@ public class MainActivity extends AppCompatActivity {
         minutes.setText(getMinuteHourString(timer[0]));
         hours.setText(getMinuteHourString(timer[1]));
         days.setText(getDayString(timer[2]));
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     private void initTimer() {
@@ -143,7 +161,27 @@ public class MainActivity extends AppCompatActivity {
 
             }
         };
-        runnable.run();
+        handler.post(runnable);
+    }
+
+    private void hideSystemBars(final View decorView) {
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                    decorView.setSystemUiVisibility(
+                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                }
+            }
+        };
+        handler.postDelayed(runnable, 100);
     }
 
 }
