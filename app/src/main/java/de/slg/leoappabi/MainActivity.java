@@ -66,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
         View parent = findViewById(R.id.parent);
         AnimationDrawable drawable = (AnimationDrawable) ContextCompat.getDrawable(this, R.drawable.background_drawable);
         parent.setBackground(drawable);
+        drawable.setEnterFadeDuration(200);
+        drawable.setExitFadeDuration(500);
+        drawable.start();
 
         findViewById(R.id.info).setOnClickListener(new View.OnClickListener() {
             @Override

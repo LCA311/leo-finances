@@ -7,5 +7,8 @@
     <string name="minutes">MINUTEN</string>
     <string name="confirm">OK</string>
     <string name="textview_placeholder">placeholder</string>
-    <string name="info_text">Danke, dass du unsere Abiballfinananzierung unterstützt!</string>
+    <string name="info_text">
+        Danke, dass du unsere Abiballfinananzierung unterstützt! \n \n \"NAME\" ist ein Projekt des LeoApp-Teams, um einen Beitrag zur Finanzierung des SLG
+        Abiballs am 30. Juni 2018 zu leisten.
+    </string>
 </resources>
