@@ -1,0 +1,27 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+    package="de.slg.leoappabi">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_spendeq2"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_spendeq2"
+        android:supportsRtl="false"
+        android:theme="@style/AppTheme">
+
+        <!-- android:theme="@style/StartTheme" -->
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+    </application>
+
+</manifest>
