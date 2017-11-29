@@ -7,8 +7,8 @@ android {
         applicationId "de.slg.leoappabi"
         minSdkVersion 16
         targetSdkVersion 25
-        versionCode 3
-        versionName "stable-0.2.0"
+        versionCode 4
+        versionName "stable-0.2.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         android.defaultConfig.vectorDrawables.useSupportLibrary = true
     }
@@ -32,6 +32,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
-    compile 'com.github.AndroidDeveloperLB:AutoFitTextView:4'
     testCompile 'junit:junit:4.12'
 }
