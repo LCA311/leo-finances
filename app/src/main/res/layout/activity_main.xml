@@ -1,130 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
-    <RelativeLayout
-        android:id="@+id/parent"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:orientation="vertical"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/days"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:text="@string/days_default"
-            android:textAlignment="gravity"
-            android:textColor="@android:color/white"
-            android:textSize="180sp" />
+            android:orientation="vertical"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/days"
-            android:layout_alignEnd="@+id/days"
-            android:layout_alignRight="@id/days"
-            android:fontFamily="casual"
-            android:text="@string/days"
-            android:textColor="@android:color/white"
-            android:textSize="17sp"
-            android:textStyle="italic" />
+            <TextView
+                android:id="@+id/days"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:text="@string/days_default"
+                android:textAlignment="gravity"
+                android:textColor="@android:color/white"
+                android:textSize="180sp" />
 
-        <TextView
-            android:id="@+id/minutes"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/hours"
-            android:layout_alignBottom="@+id/hours"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="@string/hours_min_default"
-            android:textColor="@android:color/white"
-            android:textSize="95sp" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/days"
+                android:layout_alignEnd="@+id/days"
+                android:layout_alignRight="@id/days"
+                android:fontFamily="casual"
+                android:paddingLeft="2dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/days"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/minutes"
-            android:layout_alignStart="@+id/minutes"
-            android:layout_below="@+id/minutes"
-            android:fontFamily="casual"
-            android:text="@string/minutes"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="17sp"
-            android:textStyle="italic" />
+            <TextView
+                android:id="@+id/minutes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/hours"
+                android:layout_alignBottom="@+id/hours"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="@string/hours_min_default"
+                android:textColor="@android:color/white"
+                android:textSize="95sp" />
 
-        <TextView
-            android:id="@+id/hours"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/days"
-            android:layout_alignStart="@+id/days"
-            android:layout_below="@+id/days"
-            android:layout_marginTop="33dp"
-            android:text="@string/hours_min_default"
-            android:textColor="@android:color/white"
-            android:textSize="160sp" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/minutes"
+                android:layout_alignStart="@+id/minutes"
+                android:layout_below="@+id/minutes"
+                android:fontFamily="casual"
+                android:paddingLeft="2dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/minutes"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="italic" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/hours"
-            android:layout_alignRight="@+id/hours"
-            android:layout_alignTop="@+id/hours"
-            android:fontFamily="casual"
-            android:text="@string/hours"
-            android:textColor="@android:color/white"
-            android:textSize="17sp"
-            android:textStyle="italic" />
+            <TextView
+                android:id="@+id/hours"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/days"
+                android:layout_alignStart="@+id/days"
+                android:layout_below="@+id/days"
+                android:layout_marginTop="33dp"
+                android:text="@string/hours_min_default"
+                android:textColor="@android:color/white"
+                android:textSize="160sp" />
 
-        <TextView
-            android:id="@+id/seconds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/days"
-            android:layout_alignStart="@+id/days"
-            android:paddingTop="10dp"
-            android:layout_below="@+id/hours"
-            android:layout_marginTop="5dp"
-            android:text="@string/hours_min_default"
-            android:textColor="@android:color/white"
-            android:textSize="100sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/hours"
+                android:layout_alignRight="@+id/hours"
+                android:layout_alignTop="@+id/hours"
+                android:fontFamily="casual"
+                android:paddingLeft="2dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:paddingRight="2dp"
+                android:text="@string/hours"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="italic" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/seconds"
-            android:layout_alignRight="@+id/seconds"
-            android:layout_alignTop="@+id/seconds"
-            android:fontFamily="casual"
-            android:text="@string/seconds"
-            android:textColor="@android:color/white"
-            android:textSize="17sp"
-            android:textStyle="italic" />
+            <TextView
+                android:id="@+id/seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/days"
+                android:layout_alignStart="@+id/days"
+                android:layout_below="@+id/hours"
+                android:layout_marginTop="15dp"
+                android:paddingTop="10dp"
+                android:text="@string/hours_min_default"
+                android:textColor="@android:color/white"
+                android:textSize="100sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/seconds"
+                android:layout_alignRight="@+id/seconds"
+                android:layout_alignTop="@+id/seconds"
+                android:fontFamily="casual"
+                android:text="@string/seconds"
+                android:paddingLeft="2dp"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp"
+                android:paddingRight="2dp"
+                android:textColor="@android:color/white"
+                android:textSize="17sp"
+                android:textStyle="italic" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
 
     <ImageView
         android:id="@+id/info"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_margin="10dp"
-        app:srcCompat="@drawable/info_button"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        app:srcCompat="@drawable/info_button" />
 
 </RelativeLayout>

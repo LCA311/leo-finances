@@ -114,16 +114,16 @@ public class MainActivity extends AppCompatActivity {
 
             long time = System.currentTimeMillis();
 
-            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.GERMANY);
-            Date date = dateFormat.parse("30.06.2018 18:00");
+            DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss", Locale.GERMANY);
+            Date date = dateFormat.parse("30.06.2018 19:00:00");
 
             long goal = date.getTime();
             goal = (goal - time) / 1000;
-            timer[3] = goal % 60+1;
+            timer[3] = goal % 60;
             goal /= 60;
-            timer[0] = goal % 60+1;
+            timer[0] = goal % 60;
             goal /= 60;
-            timer[1] = goal % 24+1;
+            timer[1] = goal % 24;
             goal /= 24;
             timer[2] = goal;
         } catch (ParseException e) {
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 initCurrentTimerPosition();
                 initTimerDisplay();
-                handler.postDelayed(this, 200);
+                handler.postDelayed(this, 50);
 
             }
         };
