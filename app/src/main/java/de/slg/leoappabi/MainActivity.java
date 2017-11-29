@@ -1,26 +1,12 @@
 package de.slg.leoappabi;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -46,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView minutes;
     private TextView hours;
     private TextView days;
-
-    private boolean fullscreen;
+    private TextView seconds;
 
     @Override
     protected void onCreate(Bundle b) {
@@ -57,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         minutes = (TextView) findViewById(R.id.minutes);
         hours = (TextView) findViewById(R.id.hours);
         days = (TextView) findViewById(R.id.days);
+        seconds = (TextView) findViewById(R.id.seconds);
 
         initCurrentTimerPosition();
         initTimerDisplay();
@@ -103,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initFullscreen() {
-
-        fullscreen = true;
-
         final View decorView = getWindow().getDecorView();
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             decorView.setSystemUiVisibility(
@@ -127,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initCurrentTimerPosition() {
         try {
-            timer = new long[3];
+            timer = new long[4];
 
             long time = System.currentTimeMillis();
 
@@ -135,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
             Date date = dateFormat.parse("30.06.2018 18:00");
 
             long goal = date.getTime();
-            goal = (goal - time) / 1000 / 60;
+            goal = (goal - time) / 1000;
+            timer[3] = goal % 60+1;
+            goal /= 60;
             timer[0] = goal % 60+1;
             goal /= 60;
             timer[1] = goal % 24+1;
@@ -150,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         minutes.setText(getMinuteHourString(timer[0]));
         hours.setText(getMinuteHourString(timer[1]));
         days.setText(getDayString(timer[2]));
+        seconds.setText(getMinuteHourString(timer[3]));
     }
 
     private void initTimer() {
@@ -160,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 initCurrentTimerPosition();
                 initTimerDisplay();
-                handler.postDelayed(this, 60000);
+                handler.postDelayed(this, 200);
 
             }
         };

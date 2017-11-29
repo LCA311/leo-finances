@@ -5,6 +5,7 @@
     <string name="days">TAGE</string>
     <string name="hours">STUNDEN</string>
     <string name="minutes">MINUTEN</string>
+    <string name="seconds">SEKUNDEN</string>
     <string name="confirm">OK</string>
     <string name="textview_placeholder">placeholder</string>
     <string name="info_text">
